@@ -6,7 +6,7 @@ RUN apk add --no-cache upx ca-certificates tzdata
 COPY ./go.mod ./
 COPY ./go.sum ./
 RUN go mod download
-COPY . .
+COPY ./src ./src
 
 RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o server src/main.go \
   && upx --best server -o _upx_server \
